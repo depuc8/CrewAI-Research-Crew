@@ -21,7 +21,7 @@ from research_crew.models import PaperMeta, ParsedPaper, Section
 
 KNOWN_HEADINGS = {
     "abstract", "introduction", "related work", "background", "preliminaries",
-    "method", "methods", "methodology", "approach", "model", "experiments",
+    "method", "methods", "methodology", "approach", "experiments",
     "experimental setup", "evaluation", "results", "analysis", "discussion",
     "limitations", "conclusion", "conclusions", "future work", "references",
     "bibliography", "acknowledgments", "acknowledgements", "appendix",
@@ -188,7 +188,8 @@ def _find_authors(lines: list[_Line], title_end: int, body: float, title: str) -
         if any(w in low for w in AFFILIATION_WORDS) or re.search(r"\d{3,}", ln.text):
             continue
         for part in re.split(r",|;|\band\b|\u00b7|\u2217|\*|\u2020|\u2021", ln.text):
-            name = re.sub(r"[\d\u00b9\u00b2\u00b3\u2070-\u2079]+", "", part).strip()
+            name = re.sub(r"[\d\u00b9\u00b2\u00b3\u2070-\u2079]+", "", part)
+            name = re.sub(r"^[^\w]+|[^\w.]+$", "", name.strip())
             words = name.split()
             if 2 <= len(words) <= 4 and all(w[0].isupper() for w in words if w[0].isalpha()):
                 names.append(name)
@@ -228,8 +229,6 @@ def _heading_name(ln: _Line, body: float, strict: bool = False) -> str | None:
         return None
     if emphasised and ln.size >= body + 0.8 and len(text.split()) <= 8 and not text.endswith("."):
         return bare
-    if text.isupper() and ln.bold and 2 < len(text) < 50:
-        return text.title()
     return None
 
 
