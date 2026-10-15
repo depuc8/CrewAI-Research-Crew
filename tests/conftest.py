@@ -71,3 +71,46 @@ def sample_pdf(sample_sections) -> bytes:
         + "Published 2023.",
         sections=sample_sections,
     )
+
+
+@pytest.fixture
+def services(tmp_path):
+    """Fully local Services (hashing embedder, in-process vectors, files in tmp_path)."""
+    from research_crew.config import Settings
+    from research_crew.ingestion.embeddings import HashingEmbedder
+    from research_crew.services import Services
+    from research_crew.storage.metadata_store import LocalMetadataStore
+    from research_crew.storage.vector_store import LocalVectorStore
+
+    settings = Settings(local_data_dir=tmp_path, chunk_words=120, chunk_overlap_words=20, retrieval_top_k=4)
+    return Services(
+        settings=settings,
+        embedder=HashingEmbedder(settings.embedding_dimensions),
+        vectors=LocalVectorStore(),
+        metadata=LocalMetadataStore(tmp_path),
+    )
+
+
+@pytest.fixture
+def two_papers():
+    """Two synthetic PDFs on different topics, for retrieval tests."""
+    rag = make_pdf(
+        "Self Verification For Retrieval Augmented Generation",
+        "Ada Lovelace",
+        "We reduce hallucination in retrieval augmented generation with a verification step.",
+        [
+            ("1 Introduction", "Hallucination remains a problem for retrieval augmented generation systems. " * 20),
+            ("2 Method", "A verifier model checks every generated claim against the retrieved passages. " * 25),
+            ("3 Results", "Verification reduces hallucination rate by thirty percent on Natural Questions. " * 25),
+        ],
+    )
+    bio = make_pdf(
+        "Protein Folding With Molecular Dynamics",
+        "Grace Hopper",
+        "We simulate protein folding trajectories with molecular dynamics.",
+        [
+            ("1 Introduction", "Protein folding energy landscapes are sampled with long simulations. " * 20),
+            ("2 Results", "Folding intermediates appear at microsecond timescales in the simulations. " * 25),
+        ],
+    )
+    return {"rag-paper": rag, "bio-paper": bio}
