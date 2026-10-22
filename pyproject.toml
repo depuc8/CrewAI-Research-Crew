@@ -35,4 +35,7 @@ include = ["research_crew*"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
-filterwarnings = ["ignore::DeprecationWarning"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore:.*cannot be saved in a checkpoint:UserWarning",
+]
