@@ -17,7 +17,7 @@ def ingested(services, two_papers):
 
 
 def test_crew_structure(services, ingested):
-    rc = build_crew(services, Retriever(services), ingested, "What reduces hallucination?", llm=FakeLLM())
+    rc = build_crew(services, Retriever(services), ingested, "What reduces hallucination?", llm_factory=FakeLLM)
     assert rc.crew.process == Process.sequential
     assert [a.role for a in rc.crew.agents] == [
         "Research Paper Reader", "Research Analyst", "Literature Review Writer",
@@ -32,7 +32,7 @@ def test_crew_structure(services, ingested):
 
 def test_crew_runs_end_to_end_and_citation_check_removes_fabricated_page(services, ingested):
     retriever = Retriever(services)
-    rc = build_crew(services, retriever, ingested, "What reduces hallucination?", llm=FakeLLM())
+    rc = build_crew(services, retriever, ingested, "What reduces hallucination?", llm_factory=FakeLLM)
     result = rc.crew.kickoff()
 
     reader, analysis, review = (t.pydantic for t in result.tasks_output)

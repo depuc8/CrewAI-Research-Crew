@@ -48,10 +48,12 @@ def build_crew(
     retriever: Retriever,
     papers: list[PaperMeta],
     question: str,
-    llm=None,
+    llm_factory: Callable[[], LLM] | None = None,
     task_callback: Callable | None = None,
 ) -> ReviewCrew:
-    llm = llm or build_llm(services.settings)
+    # One LLM object per agent: CrewAI sums each agent's LLM usage, so sharing a single
+    # instance across the three agents would count its tokens three times.
+    make_llm = llm_factory or (lambda: build_llm(services.settings))
     paper_ids = [p.paper_id for p in papers]
     search = VectorSearchTool(retriever=retriever, paper_ids=paper_ids)
     structure = PDFParserTool(metadata=services.metadata)
@@ -65,7 +67,7 @@ def build_crew(
             "supports and say 'Not reported' when it does not."
         ),
         tools=[search, structure, ArxivSearchTool()],
-        llm=llm,
+        llm=make_llm(),
         max_iter=50,
         allow_delegation=False,
     )
@@ -77,7 +79,7 @@ def build_crew(
             "one-off claims, and is careful never to overstate what a paper shows."
         ),
         tools=[search],
-        llm=llm,
+        llm=make_llm(),
         max_iter=25,
         allow_delegation=False,
     )
@@ -89,7 +91,7 @@ def build_crew(
             "papers, numbers or pages."
         ),
         tools=[search],
-        llm=llm,
+        llm=make_llm(),
         max_iter=25,
         allow_delegation=False,
     )
