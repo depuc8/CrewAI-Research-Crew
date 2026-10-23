@@ -41,6 +41,7 @@ class FakeLLM(BaseLLM):
              from_task=None, from_agent=None, response_model=None):
         self.calls += 1
         text = _text(messages)
+        self._track_token_usage_internal({"prompt_tokens": 100, "completion_tokens": 50, "total_tokens": 150})
         role = (from_agent.role if from_agent is not None else "") or ""
         if "Reader" in role:
             return self._reader(text)
