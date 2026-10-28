@@ -1,0 +1,6 @@
+project_id = "your-gcp-project-id"
+region     = "us-central1"
+
+# embedding_dimensions      = 768
+# index_machine_type        = "e2-standard-2"
+# create_firestore_database = false   # if the project already has a (default) database
