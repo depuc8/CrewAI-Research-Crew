@@ -1,0 +1,232 @@
+[
+  {
+    "id": "q1-rag-hallucination",
+    "question": "What methods reduce hallucination in RAG systems?",
+    "key_papers": [
+      {
+        "arxiv_id": "2310.11511",
+        "title": "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection",
+        "findings": [
+          {
+            "text": "Trains one LM to retrieve on demand and to critique retrieved passages and its own output using special reflection tokens.",
+            "keywords": ["reflection tokens"]
+          }
+        ]
+      },
+      {
+        "arxiv_id": "2401.15884",
+        "title": "Corrective Retrieval Augmented Generation",
+        "findings": [
+          {
+            "text": "A lightweight retrieval evaluator scores retrieved documents and triggers corrective actions such as web search when retrieval is unreliable.",
+            "keywords": ["retrieval evaluator"]
+          }
+        ]
+      },
+      {
+        "arxiv_id": "2005.11401",
+        "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+        "findings": [
+          {
+            "text": "Combining a parametric generator with non-parametric retrieval memory gives more factual, specific generations than a parametric-only model.",
+            "keywords": ["non-parametric", "factual"]
+          }
+        ]
+      },
+      {
+        "arxiv_id": "2312.10997",
+        "title": "Retrieval-Augmented Generation for Large Language Models: A Survey",
+        "findings": [
+          {
+            "text": "Organises RAG research into Naive RAG, Advanced RAG and Modular RAG paradigms.",
+            "keywords": ["naive rag", "advanced rag"]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q2-dense-vs-sparse",
+    "question": "How do dense retrieval methods compare to sparse methods for open-domain question answering?",
+    "key_papers": [
+      {
+        "arxiv_id": "2004.04906",
+        "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+        "findings": [
+          {
+            "text": "A dual-encoder dense retriever beats BM25 by a large margin in top-20 passage retrieval accuracy on open-domain QA.",
+            "keywords": ["bm25", "top-20"]
+          }
+        ]
+      },
+      {
+        "arxiv_id": "2007.00808",
+        "title": "Approximate Nearest Neighbor Negative Contrastive Learning for Dense Text Retrieval",
+        "findings": [
+          {
+            "text": "Constructing hard negatives from an asynchronously refreshed approximate nearest neighbour index improves dense retriever training.",
+            "keywords": ["approximate nearest neighbor", "negatives"]
+          }
+        ]
+      },
+      {
+        "arxiv_id": "2104.08663",
+        "title": "BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models",
+        "findings": [
+          {
+            "text": "BM25 remains a robust zero-shot baseline across heterogeneous datasets, while dense retrievers generalise poorly out of domain.",
+            "keywords": ["zero-shot", "bm25"]
+          }
+        ]
+      },
+      {
+        "arxiv_id": "2112.09118",
+        "title": "Unsupervised Dense Information Retrieval with Contrastive Learning",
+        "findings": [
+          {
+            "text": "Unsupervised contrastive pre-training yields dense retrievers that are competitive with BM25.",
+            "keywords": ["contrastive", "bm25"]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q3-reasoning-prompting",
+    "question": "What prompting techniques improve the reasoning ability of large language models?",
+    "key_papers": [
+      {
+        "arxiv_id": "2201.11903",
+        "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models",
+        "findings": [
+          {
+            "text": "Prompting with intermediate reasoning steps (chain of thought) substantially improves arithmetic and commonsense reasoning in sufficiently large models.",
+            "keywords": ["chain of thought", "arithmetic"]
+          }
+        ]
+      },
+      {
+        "arxiv_id": "2203.11171",
+        "title": "Self-Consistency Improves Chain of Thought Reasoning in Language Models",
+        "findings": [
+          {
+            "text": "Sampling diverse reasoning paths and taking the most consistent answer improves over greedy chain-of-thought decoding.",
+            "keywords": ["self-consistency", "reasoning paths"]
+          }
+        ]
+      },
+      {
+        "arxiv_id": "2205.11916",
+        "title": "Large Language Models are Zero-Shot Reasoners",
+        "findings": [
+          {
+            "text": "Appending 'Let's think step by step' elicits multi-step reasoning without any few-shot examples.",
+            "keywords": ["step by step", "zero-shot"]
+          }
+        ]
+      },
+      {
+        "arxiv_id": "2305.10601",
+        "title": "Tree of Thoughts: Deliberate Problem Solving with Large Language Models",
+        "findings": [
+          {
+            "text": "Searching over a tree of intermediate thoughts with lookahead and backtracking solves tasks such as Game of 24 far better than chain of thought.",
+            "keywords": ["game of 24", "tree of thoughts"]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q4-efficient-finetuning",
+    "question": "How can large language models be fine-tuned efficiently with limited compute?",
+    "key_papers": [
+      {
+        "arxiv_id": "2106.09685",
+        "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+        "findings": [
+          {
+            "text": "Freezing the pre-trained weights and training low-rank update matrices cuts trainable parameters by orders of magnitude with little quality loss.",
+            "keywords": ["low-rank", "trainable parameters"]
+          }
+        ]
+      },
+      {
+        "arxiv_id": "2305.14314",
+        "title": "QLoRA: Efficient Finetuning of Quantized LLMs",
+        "findings": [
+          {
+            "text": "Backpropagating through a frozen 4-bit quantised model into LoRA adapters (NormalFloat data type) allows fine-tuning a 65B model on a single GPU.",
+            "keywords": ["4-bit", "normalfloat"]
+          }
+        ]
+      },
+      {
+        "arxiv_id": "2101.00190",
+        "title": "Prefix-Tuning: Optimizing Continuous Prompts for Generation",
+        "findings": [
+          {
+            "text": "Optimising a small continuous prefix while keeping the language model frozen is a lightweight alternative to full fine-tuning.",
+            "keywords": ["prefix", "frozen"]
+          }
+        ]
+      },
+      {
+        "arxiv_id": "2104.08691",
+        "title": "The Power of Scale for Parameter-Efficient Prompt Tuning",
+        "findings": [
+          {
+            "text": "Learning soft prompts with a frozen model closes the gap to full fine-tuning as model size grows.",
+            "keywords": ["soft prompt", "frozen"]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q5-factuality-evaluation",
+    "question": "What are the main approaches to evaluating the factuality of language model generations?",
+    "key_papers": [
+      {
+        "arxiv_id": "2305.14251",
+        "title": "FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation",
+        "findings": [
+          {
+            "text": "Breaks a generation into atomic facts and reports the share supported by a knowledge source.",
+            "keywords": ["atomic facts"]
+          }
+        ]
+      },
+      {
+        "arxiv_id": "2303.08896",
+        "title": "SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models",
+        "findings": [
+          {
+            "text": "Detects hallucinations without external resources by checking consistency across multiple sampled responses.",
+            "keywords": ["zero-resource", "sampled"]
+          }
+        ]
+      },
+      {
+        "arxiv_id": "2109.07958",
+        "title": "TruthfulQA: Measuring How Models Mimic Human Falsehoods",
+        "findings": [
+          {
+            "text": "A benchmark of questions that elicit imitative falsehoods shows larger models can be less truthful.",
+            "keywords": ["truthful", "falsehoods"]
+          }
+        ]
+      },
+      {
+        "arxiv_id": "2202.03629",
+        "title": "Survey of Hallucination in Natural Language Generation",
+        "findings": [
+          {
+            "text": "Distinguishes intrinsic from extrinsic hallucination and surveys metrics and mitigation methods.",
+            "keywords": ["intrinsic", "extrinsic"]
+          }
+        ]
+      }
+    ]
+  }
+]
