@@ -119,3 +119,10 @@ def get_by_id(paper_id: str, client: httpx.Client | None = None) -> ArxivPaper |
 
 def download_pdf(paper: ArxivPaper, client: httpx.Client | None = None) -> bytes:
     return _get(paper.pdf_url, client=client).content
+
+
+def get_many(paper_ids: list[str], client: httpx.Client | None = None) -> list[ArxivPaper]:
+    """Metadata for several papers in one request (arXiv returns them in id_list order)."""
+    ids = [i.replace("_", "/", 1) if re.match(r"^[a-z\-]+_\d", i) else i for i in paper_ids]
+    params = {"id_list": ",".join(ids), "max_results": len(ids)}
+    return parse_feed(_get(API_URL, params, client).text)

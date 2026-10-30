@@ -1,0 +1,91 @@
+{
+  "embeddings": "local",
+  "vector_search": "exact cosine (local); Vertex AI Vector Search is approximate",
+  "corpus_papers": 20,
+  "top_k": 20,
+  "per_paper_k": 6,
+  "mean_paper_recall": 0.55,
+  "mean_finding_recall": 0.65,
+  "ground_truth_problems": [],
+  "questions": [
+    {
+      "question_id": "q1-rag-hallucination",
+      "paper_recall": 0.0,
+      "papers_found": [],
+      "papers_missed": [
+        "2310.11511",
+        "2401.15884",
+        "2005.11401",
+        "2312.10997"
+      ],
+      "finding_recall": 0.5,
+      "findings_missed": [
+        "2401.15884: A lightweight retrieval evaluator scores retrieved documents and triggers corrective actions such as web search when retrieval is unreliable.",
+        "2312.10997: Organises RAG research into Naive RAG, Advanced RAG and Modular RAG paradigms."
+      ]
+    },
+    {
+      "question_id": "q2-dense-vs-sparse",
+      "paper_recall": 0.75,
+      "papers_found": [
+        "2004.04906",
+        "2007.00808",
+        "2104.08663"
+      ],
+      "papers_missed": [
+        "2112.09118"
+      ],
+      "finding_recall": 0.75,
+      "findings_missed": [
+        "2007.00808: Constructing hard negatives from an asynchronously refreshed approximate nearest neighbour index improves dense retriever training."
+      ]
+    },
+    {
+      "question_id": "q3-reasoning-prompting",
+      "paper_recall": 1.0,
+      "papers_found": [
+        "2201.11903",
+        "2203.11171",
+        "2205.11916",
+        "2305.10601"
+      ],
+      "papers_missed": [],
+      "finding_recall": 1.0,
+      "findings_missed": []
+    },
+    {
+      "question_id": "q4-efficient-finetuning",
+      "paper_recall": 0.5,
+      "papers_found": [
+        "2106.09685",
+        "2104.08691"
+      ],
+      "papers_missed": [
+        "2305.14314",
+        "2101.00190"
+      ],
+      "finding_recall": 0.5,
+      "findings_missed": [
+        "2101.00190: Optimising a small continuous prefix while keeping the language model frozen is a lightweight alternative to full fine-tuning.",
+        "2104.08691: Learning soft prompts with a frozen model closes the gap to full fine-tuning as model size grows."
+      ]
+    },
+    {
+      "question_id": "q5-factuality-evaluation",
+      "paper_recall": 0.5,
+      "papers_found": [
+        "2305.14251",
+        "2202.03629"
+      ],
+      "papers_missed": [
+        "2303.08896",
+        "2109.07958"
+      ],
+      "finding_recall": 0.5,
+      "findings_missed": [
+        "2109.07958: A benchmark of questions that elicit imitative falsehoods shows larger models can be less truthful.",
+        "2202.03629: Distinguishes intrinsic from extrinsic hallucination and surveys metrics and mitigation methods."
+      ]
+    }
+  ]
+}

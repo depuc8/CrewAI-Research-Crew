@@ -1,0 +1,6 @@
+{
+  "manual_minutes_per_review": null,
+  "protocol": "Time one person writing a cited literature review (key findings, comparison, gaps, references) for each question in questions.json from the same key papers, then enter the mean minutes per review here. Until it is filled in, no time-saved figure is reported.",
+  "measured_by": null,
+  "measured_on": null
+}
