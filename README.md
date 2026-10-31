@@ -212,7 +212,8 @@ never retrieved so the end-to-end test can assert the check removes it.
 | arXiv client | tests + live calls (search, metadata, PDF download) |
 | Terraform | `terraform validate` and `fmt` against the real `google` provider schema; **not applied** |
 | Vertex AI Vector Search, Gemini, Cloud Tasks, Firestore, GCS code | written against the installed SDKs and current docs, exercised with mocks; **not run against live GCP** |
-| Dockerfile, `deploy.sh` | entrypoint smoke-tested locally; image **not built**, script **not run** (no Docker here; `bash -n` only) |
+| Dockerfile | image **built with podman** (1.6 GB, runs as non-root); both `SERVICE=api` and `SERVICE=frontend` start and report healthy (`/healthz`, `/_stcore/health`) with local backends |
+| `deploy.sh` | `bash -n` only; **not run** (needs a billing-enabled project: Cloud Build, Cloud Run, Vector Search) |
 
 ## Limitations
 
